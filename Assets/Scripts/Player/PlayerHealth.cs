@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int _maxHealth = 3; 
     public int Health { get; private set; }
 
-    public event Action OnPlayerDeath;  
+    public static event Action OnPlayerDeath;  
     public event Action<int> OnHealthChanged;  
 
     private void Start()
@@ -15,11 +15,13 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnEnable()
     {
+        PlayerBorderController.OnPlayerFalling += TakeDamage;
         DamageTrap.OnDamageDealt += TakeDamage; 
     }
 
     private void OnDisable()
     {
+        PlayerBorderController.OnPlayerFalling -= TakeDamage;
         DamageTrap.OnDamageDealt -= TakeDamage; 
     }
 
