@@ -128,8 +128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4936345}
-  - component: {fileID: 4936347}
   - component: {fileID: 4936346}
+  - component: {fileID: 4936347}
   m_Layer: 6
   m_Name: TimerTrigger
   m_TagString: Untagged
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4936344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a4c9644d3edfd540a4ca70bfc9aeac3, type: 3}
+  m_Script: {fileID: 11500000, guid: be98e346c72fcaa478fae1dcfc7ddfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isTimeRunning: 0
@@ -430,8 +430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 507fed0338ce65948937cd10a0904a51, type: 2}
-  - {fileID: 2100000, guid: f5c4e8744f97ef4468f92d8b6072bc15, type: 2}
+  - {fileID: 2100000, guid: 72ead9bd5ee5698449f741c0d907c07a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1474,7 +1473,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 423278814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26782fdbf985d2043875866f1478893c, type: 3}
+  m_Script: {fileID: 11500000, guid: 73c976faa0a715d40b6573c6f78deede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 423278816}
@@ -3159,7 +3158,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c58c4747acab0a0418a48a551c13d7e1, type: 2}
+  - {fileID: 2100000, guid: f22213303cafdf749bbbf945cd1d070b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3502,7 +3501,7 @@ PrefabInstance:
     - target: {fileID: 1354456189637338731, guid: ed98273aa17903a48a37b226560574b1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c58c4747acab0a0418a48a551c13d7e1, type: 2}
+      objectReference: {fileID: 2100000, guid: eeb91235438c8a74fb5162855d7957a9, type: 2}
     - target: {fileID: 1986512976709005707, guid: ed98273aa17903a48a37b226560574b1, type: 3}
       propertyPath: m_Name
       value: Platform
@@ -3653,6 +3652,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5335949298266740491, guid: 741ae340bb773f549b30188396303baa, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 71f62d5524cb6b948ac65df5db421f76, type: 2}
     - target: {fileID: 5971514550971072617, guid: 741ae340bb773f549b30188396303baa, type: 3}
       propertyPath: m_Name
       value: ShakyPlatforms
@@ -3774,7 +3777,7 @@ PrefabInstance:
     - target: {fileID: 4200360505730713577, guid: 1ab816a18dc46d84aa2535451ce378bc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c58c4747acab0a0418a48a551c13d7e1, type: 2}
+      objectReference: {fileID: 2100000, guid: f22213303cafdf749bbbf945cd1d070b, type: 2}
     - target: {fileID: 5408843930759210960, guid: 1ab816a18dc46d84aa2535451ce378bc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3822,7 +3825,7 @@ PrefabInstance:
     - target: {fileID: 8259545971524686215, guid: 1ab816a18dc46d84aa2535451ce378bc, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: c58c4747acab0a0418a48a551c13d7e1, type: 2}
+      objectReference: {fileID: 2100000, guid: f22213303cafdf749bbbf945cd1d070b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
