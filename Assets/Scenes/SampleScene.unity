@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerSpeed: 10
-  _jumpHeight: 2
+  _jumpHeight: 3
   _gravityForce: -9.81
   _groundedForce: -2
   _rotationSpeed: 180

@@ -15,9 +15,14 @@ public class DamageMechanism : MonoBehaviour
     private bool _isTrapActive = false;
     private bool _isPlayerOnTrap = false;
 
+    private WaitForSeconds _damageWait;
+    private WaitForSeconds _cooldownWait;
+
     private void Start()
     {
         _damageTrap = GetComponent<DamageTrap>();
+        _damageWait = new WaitForSeconds(_damageDelay);
+        _cooldownWait = new WaitForSeconds(_cooldownTime);
     }
 
     private void ActivateTrap()
@@ -35,7 +40,7 @@ public class DamageMechanism : MonoBehaviour
 
         _trapRenderer.material.color = _activatedColor;
 
-        yield return new WaitForSeconds(_damageDelay);
+        yield return _damageWait;
 
         _trapRenderer.material.color = _damageColor;
 
@@ -47,15 +52,14 @@ public class DamageMechanism : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         _trapRenderer.material.color = _defaultColor;
 
-        yield return new WaitForSeconds(_cooldownTime);
+        yield return _cooldownWait;
 
         _isTrapActive = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided");
-        if (((1 << other.gameObject.layer) & _playerLayer) != 0)
+        if (IsPlayer(other))
         {
             Debug.Log("Player Collided");
             _isPlayerOnTrap = true;
@@ -65,10 +69,15 @@ public class DamageMechanism : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (((1 << other.gameObject.layer) & _playerLayer) != 0)
+        if (IsPlayer(other))
         {
             Debug.Log("Player Exited");
             _isPlayerOnTrap = false;
         }
+    }
+
+    private bool IsPlayer(Collider other)
+    {
+        return ((1 << other.gameObject.layer) & _playerLayer) != 0;
     }
 }

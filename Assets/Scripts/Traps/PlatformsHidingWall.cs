@@ -7,6 +7,7 @@ public class PlatformsHidingWall : MonoBehaviour
     [SerializeField] private float _timer = 2f; 
     [SerializeField] private float _zOffset = 5f; 
     [SerializeField] private float _moveDuration = 0.1f; 
+    [SerializeField] private float _platformDelay = 0.5f; 
 
     private Vector3[] _originalPositions;
 
@@ -15,8 +16,9 @@ public class PlatformsHidingWall : MonoBehaviour
         _originalPositions = new Vector3[_hidingPlatforms.Length];
         for (int i = 0; i < _hidingPlatforms.Length; i++)
         {
-            _originalPositions[i] = _hidingPlatforms[i].transform.position; 
+            _originalPositions[i] = _hidingPlatforms[i].transform.position;
         }
+
         StartCoroutine(HidePlatformsRoutine());
     }
 
@@ -26,21 +28,40 @@ public class PlatformsHidingWall : MonoBehaviour
         {
             yield return new WaitForSeconds(_timer);
 
-            MovePlatforms(_zOffset);
+            for (int i = 0; i < _hidingPlatforms.Length; i++)
+            {
+                StartCoroutine(MovePlatform(_hidingPlatforms[i], _zOffset));
+                yield return new WaitForSeconds(_platformDelay); 
+            }
 
-            yield return new WaitForSeconds(_moveDuration);
+            yield return new WaitForSeconds(_moveDuration + _platformDelay * _hidingPlatforms.Length);
 
-            MovePlatforms(0);
+            for (int i = 0; i < _hidingPlatforms.Length; i++)
+            {
+                StartCoroutine(MovePlatform(_hidingPlatforms[i], 0));
+                yield return new WaitForSeconds(_platformDelay); 
+            }
+
+
+            yield return new WaitForSeconds(_timer);
         }
     }
 
-    private void MovePlatforms(float offset)
+    private IEnumerator MovePlatform(GameObject platform, float zOffset)
     {
-        foreach (GameObject platform in _hidingPlatforms)
+        Vector3 targetPosition = _originalPositions[System.Array.IndexOf(_hidingPlatforms, platform)];
+        targetPosition.z += zOffset;
+
+        Vector3 startPosition = platform.transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _moveDuration)
         {
-            Vector3 newPosition = platform.transform.position;
-            newPosition.z = _originalPositions[System.Array.IndexOf(_hidingPlatforms, platform)].z + offset;
-            platform.transform.position = newPosition;
+            platform.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / _moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
+
+        platform.transform.position = targetPosition; 
     }
 }
