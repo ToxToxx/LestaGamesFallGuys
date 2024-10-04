@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WindZone : MonoBehaviour
+public class WindPlatform : MonoBehaviour
 {
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private float _windForce = 10f;

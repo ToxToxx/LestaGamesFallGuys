@@ -7,10 +7,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpHeight = 2f;          
     [SerializeField] private float _gravityForce = -9.81f;
     [SerializeField] private float _groundedForce = -2f;
+
     private float _verticalVelocity;        
     private Vector3 _movement;              
 
     private CharacterController _controller;
+
+    [SerializeField] private float _rotationSpeed = 180;
+    private Vector3 _rotationVector;
 
     private void Start()
     {
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleMovement();
         HandleJumping();
+        HandleRotation();
     }
 
     private void HandleMovement()
@@ -36,10 +41,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         _movement = move + Vector3.up * _verticalVelocity;
-
+        
         _controller.Move(_movement * Time.deltaTime);
     }
 
+    private void HandleRotation()
+    {
+        _rotationVector = new Vector3(0, Input.GetAxisRaw("Horizontal") * _rotationSpeed * Time.deltaTime, 0);
+        transform.Rotate(_rotationVector);
+    }
     private void HandleJumping()
     {
         if (InputManager.JumpWasPressed && _controller.isGrounded)
