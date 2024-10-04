@@ -5,7 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _playerSpeed = 5f;               
     [SerializeField] private float _jumpHeight = 2f;          
-    [SerializeField] private float _gravityForce = -9.81f;         
+    [SerializeField] private float _gravityForce = -9.81f;
+    [SerializeField] private float _groundedForce = -2f;
     private float _verticalVelocity;        
     private Vector3 _movement;              
 
@@ -29,10 +30,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * input.x + transform.forward * input.y;
         move *= _playerSpeed;
 
-
         if (_controller.isGrounded && _verticalVelocity < 0)
         {
-            _verticalVelocity = -2f;  
+            _verticalVelocity = _groundedForce;  
         }
 
         _movement = move + Vector3.up * _verticalVelocity;
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (InputManager.JumpWasPressed && _controller.isGrounded)
         {
-            _verticalVelocity = Mathf.Sqrt(_jumpHeight * -2f * _gravityForce);
+            _verticalVelocity = Mathf.Sqrt(_jumpHeight * _groundedForce * _gravityForce);
         }
         _verticalVelocity += _gravityForce * Time.deltaTime;
     }
